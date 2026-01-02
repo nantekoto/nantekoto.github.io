@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Gemini CLI 踩雷</title>
+      <link href="/2026/01/01/gemini-cli-configuration/"/>
+      <url>/2026/01/01/gemini-cli-configuration/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><span id="more"></span><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>在使用 Gemini CLI 的过程中，我遇到了一些认证相关的问题，特此记录下来以备将来参考。</p><h2 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h2><p>考虑到Google一直限制内地IP对Gemini的访问，安装完Gemini CLI后，需要在CMD中设置代理才能正常完成登录、授权、使用。否则就会出现</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs delphi">Failed <span class="hljs-keyword">to</span> login. <span class="hljs-keyword">Message</span>: Failed <span class="hljs-keyword">to</span> exchange authorization code <span class="hljs-keyword">for</span> tokens https:<span class="hljs-comment">//oauth2.googleapis.com/token failed, reason...</span><br></code></pre></td></tr></table></figure><p>这样的报错。<br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/gemini.png" alt="报错" data-caption="报错" loading="lazy"></p><p>我使用的是Clash for Windows 0.20.16，尝试开启全局代理、TUN模式，并切换香港、日本、美国等节点都无法正常完成登录授权。<br>解决的办法是为CMD设置代理，指向Clash for Windows的HTTP端口（默认是7890）。<br>使用set命令设置环境变量，仅在当前CMD会话中生效。</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> <span class="hljs-attribute">http_proxy</span>=http://127.0.0.1:7890<br><span class="hljs-built_in">set</span> <span class="hljs-attribute">https_proxy</span>=http://127.0.0.1:7890<br></code></pre></td></tr></table></figure><p>使用setx命令，会配置为当前用户变量，永久生效。</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">setx http_proxy http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7890</span><br>setx https_proxy http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7890</span><br></code></pre></td></tr></table></figure><p>或者直接在电脑环境变量中添加http_proxy和https_proxy变量，值为<code>http://127.0.0.1:7890</code>。<br>设置完成后，重新运行<code>gemini login</code>命令，即可正常完成登录授权。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Gemini </tag>
+            
+            <tag> Authentication </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ChatGPT食用指南</title>
+      <link href="/2023/02/13/ChatGPT%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+      <url>/2023/02/13/ChatGPT%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>详尽的ChatGPT食用指南，药到病除，包教包会</p><span id="more"></span><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>最近ChatGPT也是火到不行啊，虽然随着不断的更新被openAI加了很多思想钢印，但是总体来说即便只是作为一个聊天机器人，也比Siri，小娜等等前辈好玩多了，不知道高到哪里去。更别说ChatGPT在总结、翻译、润色等自然语言处理老本行上面的巨大优势，辅以写代码、角色扮演等等稀奇古怪的用法，可以说能这么火是理所当然的。</p><p>微软前两天刚公布要将ChatGPT的服务融合到自己的全家桶当中，但是国服不知道什么时候才能上线体验了。目前国内各种调用ChatGPT的api接口服务多的不行，质量也良莠不齐，更有骗钱的。所以咱们最好还是自己亲自动手，去openAI官网体验一下最原汁原味的ChatGPT服务吧。</p><h2 id="梯子"><a href="#梯子" class="headerlink" title="梯子"></a>梯子</h2><p>最首先的首先，关键的关键，你得有个翻墙的梯子！openAI目前不在大陆地区提供服务，要想用ChatGPT就得使用代理的国外ip地址。<br>这里推荐一个<a href="https://ikuuu.eu/">梯子</a>，有免费的节点速度也不错，但是免费的节点用的人多，被openAI识别ban掉了，要上还是得用付费节点，10r一个月也不贵。如果有其他选择也一样，但注意很多境外ip包括香港的也不提供服务，推荐美国、印度、日本等节点。</p><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676018516002.jpg" alt="梯子" data-caption="梯子" loading="lazy"></p><h2 id="国外手机账号"><a href="#国外手机账号" class="headerlink" title="国外手机账号"></a>国外手机账号</h2><p>挂上梯子之后，我们需要一个国外的手机账号才能注册openAI账号，这个<a href="https://sms-activate.org/">网站</a>提供了短信验证码接收服务，网站的账号注册流程很简单就不多说了，登录上后在在服务选择里面找到openAI服务</p><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676019379467.jpg" alt="smsactivate" data-caption="smsactivate" loading="lazy"></p><p>点开openAI服务，可以看到这个网站提供了很多个国家的号码，这里的货币是卢布，大概兑人民币是10:1。之前最便宜的印度号码只要10卢布，1块钱，现在已经涨价了。<br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676019604711.jpg" alt="smsactivate" data-caption="smsactivate" loading="lazy"><br>目前最便宜的应该是哈萨克斯坦的号码，两块多钱，可以试试，不行的话这个网站可以直接退的不用担心，只要不是恶意退款就没事。<br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676019640578.jpg" alt="smsactivate" data-caption="smsactivate" loading="lazy"></p><h2 id="openAI账号"><a href="#openAI账号" class="headerlink" title="openAI账号"></a>openAI账号</h2><p>拿到号码后，就可以直接去<a href="https://chat.openai.com/">ChatGPT</a>注册账号了，不过由于使用的人太多了，这个网站经常显示过载让你等等再来。<br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676019933997.jpg" alt="ChatGPT" data-caption="ChatGPT" loading="lazy"><br>问题不大一般多刷新几次一般就可以了。<br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676020011880.jpg" alt="ChatGPT" data-caption="ChatGPT" loading="lazy"></p><p>点击 Sign up 用你的邮箱注册，注册过程中服务地区就选你的号码归属地，然后把租来的号码粘贴上去，再去sms网站上等待验证码来就行了。等不到验证码可以多换几个号码试试，没收到就是免费的。</p><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676020465315.jpg" alt="验证码" data-caption="验证码" loading="lazy"></p><p>验证码过了就大功告成啦！</p><h2 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h2><p>去<a href="https://chat.openai.com/">ChatGPT</a>登录上你的账号就可以肆意折磨ChatGPT的脑子了，随便你问都能给你胡诌出来。直接在输入框输入问题就好，输入中文回答中文，输入英文回答英文。</p><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676020847036.jpg" alt="chat" data-caption="chat" loading="lazy"></p><p>左上角可以开始新的对话，每个对话窗口都是封闭、独立的，ChatGPT只会在对话窗口内记住上下文。</p><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676020980879.jpg" alt="chat" data-caption="chat" loading="lazy"></p><p>回答的生成速度会受到使用人数的影响变慢，有钱可以升级一波，就当支持科学发展啦！</p><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/ChatGPT/1676021080731.jpg" alt="chat" data-caption="chat" loading="lazy"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ChatGPT </tag>
+            
+            <tag> 说明 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>流浪的猫去世了</title>
+      <link href="/2022/12/23/%E6%B5%81%E6%B5%AA%E7%9A%84%E7%8C%AB%E5%8E%BB%E4%B8%96%E4%BA%86/"/>
+      <url>/2022/12/23/%E6%B5%81%E6%B5%AA%E7%9A%84%E7%8C%AB%E5%8E%BB%E4%B8%96%E4%BA%86/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>十一月末暂且温暖的广州的夜晚，一只叫虎皮蛋糕的流浪的猫去世了。</p><span id="more"></span><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>他是从32楼的阳台上跳下去的，跳板是台总被叫成冰箱的老旧的洗衣机。阳台用塑料网封住了下半，但是猫长得比网更快。他兴许是重重摔在了地下的雨棚，再滚落到了水泥地上。重力折断了他的脊柱，没有太多痛苦地，这只叫虎皮蛋糕的流浪的猫去世了。</p><p>他当夜就被葬在了白云山上，干燥平整的沙壤之下，狭长的墓穴，扭曲发黑的尸体，和他喜欢的小球。</p><table><thead><tr><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E4%B8%8B%E8%91%AC.jpg" alt="1" data-caption="1" loading="lazy"></th><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E5%A2%93%E5%9C%B0.jpg" alt="1" data-caption="1" loading="lazy"></th></tr></thead></table><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>虎皮蛋糕是被我们从小区的垃圾站捉回来的，连带着他的母亲一起。六月份的夏天，虎皮蛋糕刚出生不久，还没有断奶，但捉他的时候很是费了一番力气。最后我们是用整个猫笼把他们诱骗进去、带回家的。</p><p>虎皮蛋糕本来还有一个双胞胎兄弟的，黄背白肚皮，但在我们实施诱捕计划那段时间就消失了，或许是更早地离开母亲了，也可能是被其他住户捉走了。小区垃圾站是这群橘色流浪猫的众多家园之一，经常会有住户投喂罐头或者肉食，流浪猫都长得很壮硕。虎皮蛋糕的母亲在猫群中似有着不低的威望，她浑身的金毛已经毛糙了，泛着金属光泽的灰黄色，像是漂亮的汉堡面包，于是我们叫她汉堡包。</p><p>汉堡包看起来年纪应该很大了，她也如老猫般经世地温顺，会亲昵地用头去蹭投喂人的手，在裤脚边打转。但是流浪猫终究是习惯了自由，在家里关了几天之后仍旧每日每夜地叫。再者虎皮蛋糕似乎也不需要母亲了，虽然她仍旧喂奶，但也总是揍他，让他自力更生。于是我们将她放走了，汉堡包在外面生活得很好，之后又生了好几胎同样配色的橘猫。</p><table><thead><tr><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E5%88%9A%E6%9D%A53.jpg" alt="1" data-caption="1" loading="lazy"></th><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E5%88%9A%E6%9D%A52.jpg" alt="1" data-caption="1" loading="lazy"></th><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E5%88%9A%E6%9D%A5.jpg" alt="1" data-caption="1" loading="lazy"></th></tr></thead></table><h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><p>刚到家的虎皮蛋糕灰扑扑的，鼻子上黑乎乎的脏东西总是擦不完。在家里上蹿下跳之后，总算是在我们的床上、衣柜里蹭了个干净，没多久就褪掉了流浪猫的气质，变得像是从小家养的小橘猫了。捉他的猫笼变成了他的猫爬架，他喜欢趴在网格顶上，从下面看是毛茸茸的肚皮和粉嫩的猫爪肉球。</p><p>就像别的小猫一下，虎皮蛋糕总是精力旺盛，小小的房间是他探索不完的广阔领地。当他终于习惯了两个智人跟他一起生活之后，我们逐渐就能抱他了，而不再担心身上会多些抓痕。再之后他就喜欢跟在我们后面了，去厕所的时候会在门口来回观望，吃饭的时候会往桌子上跳，工作的时候会安静睡在旁边的方凳。虽说猫依旧是顽皮的，咬坏了一些东西，但虎皮蛋糕还是一只很听话的好猫咪。</p><p>他像所有普通的猫咪一样，缓慢而又迅速地长大。虎皮蛋糕不喜欢吃猫粮，但会在猫粮倒在碗里发出叮当响的声音时，从任何隐蔽的小角落冲出来，凑上前用鼻子闻闻，发现不是鸡胸肉之后，再兴趣寥寥地踱步走开。第一次用猫包背他出门的时候，他已经忘了外面的热闹世界了，被吓得瑟瑟发抖，在包里吐着舌头喘气，最后还在里面拉了一条又臭又长的便便。我给绮荣买的一只黑嘴琵鹭的玩偶，成了他最喜欢的第一个玩具，可能玩偶上面有着什么特殊的气味，他总是抱着琵鹭的脑袋又啃又舔，最开始的时候猫咪还没有玩偶大，到后来窝里面已经放不下他俩了。</p><p><div class="gallery-pro" style="column-width:200px;"><div><img alt="1" src="/images/虎皮蛋糕/猫笼和包.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/虎皮蛋糕2.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/睡觉.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/虎皮蛋糕3.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/猫笼.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/鸭鸭.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/鸭鸭2.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/鸭鸭3.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div>            </div></p><h2 id="-3"><a href="#-3" class="headerlink" title=""></a></h2><p>我回到香港之后，绮荣开始一个人照顾他。再之后不久绮荣就辞掉了工作，于是他俩一人一猫就天天在一起了，互相照顾、陪伴。</p><p>很快猫咪就成长到发情的年龄，晚上叫得人睡不着觉，也开始在角落撒尿标记气味了。但是因为医生说刚打完疫苗不能绝育，于是也便只能等着。我常让绮荣多教训教训他，打几次就长记性了，但她总是很娇惯他，跟他说话讲道理，猫咪怎么能听得懂呢，他们只会喵喵叫。再之后，发现给他带上出门的项圈就能稍微止住叫声，虎皮蛋糕就经常在家里穿上那件帅气的小背心了。他最后坠楼的时候都还戴着项圈，项圈掉落在雨棚上。</p><p>虎皮蛋糕对猫草和猫薄荷都没有太大兴趣，倒很心仪蟑螂飞蛾这些虫子。绝育后的虎皮蛋糕蔫搭了几天，戴着伊丽莎白圈哪里都舔不到，只把罩子上的字都舔掉了。蛋蛋没有带走年轻猫咪的活力，虎皮蛋糕仍旧上蹿下跳，他已经能跳上冰箱了，他可能还几次仰望过高高的衣柜顶，他还在长大。</p><p>他喜欢上了毛线裹上的塑料球，绮荣把球扔出去，他就倏地冲出去把球叼着捡回来，又放在绮荣的手边，像小狗一样。</p><p>绮荣说他还是喜欢躺在板凳上，不理他的时候就安分地躺在那儿。凳子被他又啃又咬，表面已经破破烂烂了。他最后一张照片就躺在那个凳子上，像往日一样睡得一动不动。</p><p><div class="gallery-pro" style="column-width:200px;"><div><img alt="1" src="/images/虎皮蛋糕/项圈.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/项圈2.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/阉割.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/伊丽莎白圈1.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/伊丽莎白圈2.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/球1.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/球2.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/last.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/上冰箱.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/上架.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/上树.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div><div><img alt="1" src="/images/虎皮蛋糕/上洗衣机.jpg" data-caption="1" data-fancybox="gallery" loading="lazy"></div>            </div></p><h2 id="-4"><a href="#-4" class="headerlink" title=""></a></h2><p>流浪的猫咪从地上来，又回到了地下。汉堡包闻着虎皮蛋糕曾经的窝会回想起来他吗？她又生下一窝新的猫咪，两只是虎皮纹。<br>地上地下所有流浪着的猫咪，他们都能找到安心的家，安心入睡，安心地吐舌头。</p><table><thead><tr><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E6%B1%89%E5%A0%A1%E5%8C%85.jpg" alt="1" data-caption="1" loading="lazy"></th><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E6%96%B0%E7%9A%84%E4%B8%80%E7%AA%9D.jpg" alt="1" data-caption="1" loading="lazy"></th><th><img onerror="imgOnError(this);" data-fancybox="gallery" src="/images/%E8%99%8E%E7%9A%AE%E8%9B%8B%E7%B3%95/%E5%90%90%E8%88%8C%E5%A4%B4.jpg" alt="1" data-caption="1" loading="lazy"></th></tr></thead></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 回忆 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 碎碎念 </tag>
+            
+            <tag> 猫 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>はじまるよ~博客搭建日志 4</title>
+      <link href="/2022/12/08/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-4/"/>
+      <url>/2022/12/08/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天梓喵也<a href="https://www.bilibili.com/bangumi/play/ep21265">晕了</a></p><span id="more"></span><!-- 简单示例 (id, server, type)  -->    <div id="aplayer-HwDKueix" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="2420303" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div><p>论文整理完毕就等投稿，又抽空回来折腾一下blog</p><h2 id="不蒜子访问计数"><a href="#不蒜子访问计数" class="headerlink" title="不蒜子访问计数"></a>不蒜子访问计数</h2><p>使用非常非常简单的，参见<a href="http://ibruce.info/2015/04/04/busuanzi/">主页</a>。几乎不用怎么修改。<br>还是直接在主题文件<code>\layout\_partial\header.ejs</code>修改就行，在<code>&lt;div class=&quot;nexmoe-copyright&quot;&gt;</code>下加调用。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;busuanzi_container_site_pv&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> views from <br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;busuanzi_container_site_uv&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;busuanzi_value_site_uv&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> persons <span class="hljs-tag">&lt;/<span class="hljs-name">br</span>&gt;</span> <br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></td></tr></table></figure><p>函数<code>script</code>丢最后面</p><h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><p>发现waline做得挺好，也不需要登录就能评论，还有详尽的<a href="https://waline.js.org/guide/get-started/">官方文档</a>。<br>完成在waline上的配置后，需要在hexo里引入。<br>首先还是在主题文件<code>\layout\_partial\header.ejs</code>引入waline的渲染文件css，直接把代码插入<code>&lt;head&gt;</code>里面</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br><br>  <span class="hljs-comment">&lt;!-- ... --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span></span><br><span class="hljs-tag">    <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://unpkg.com/@waline/client@v2/dist/waline.css&quot;</span></span><br><span class="hljs-tag">  /&gt;</span><br>  <span class="hljs-comment">&lt;!-- ... --&gt;</span><br>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br></code></pre></td></tr></table></figure><p>再把<code>post.ejs</code>，<code>py.ejs</code>，<code>plain.ejs</code>里的<code>page.comments</code>中间原来的执行代码替换一下，主题默认的评论系统还没有做，不起作用。<br>（plain不知道是控制哪个页面的，暂且都加上）</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml">&lt;% if (page.comments)&#123; %&gt;<br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;waline&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">import</span> &#123; init &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;https://unpkg.com/@waline/client@v2/dist/waline.mjs&#x27;</span>;</span><br><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-title function_">init</span>(&#123;</span><br><span class="language-javascript">      <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#waline&#x27;</span>,</span><br><span class="language-javascript">      <span class="hljs-attr">serverURL</span>: <span class="hljs-string">&#x27;https://your-domain.vercel.app&#x27;</span>,</span><br><span class="language-javascript">    &#125;);</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span> <br>&lt;% &#125; %&gt;<br></code></pre></td></tr></table></figure><p>大功告成！挺好用！</p><h2 id="访问统计"><a href="#访问统计" class="headerlink" title="访问统计"></a>访问统计</h2><p>虽然通过google analytics认证添加了google索引，但是似乎还没有被更新进索引库里，用google还是搜不到这个网站，可能是链接太少了吧，多去搞搞友链说不定可以的，也去自己其他平台上放一下这个链接。<br>不得不说google analytics看着挺方便的，网站数据都能一览无余。</p><h2 id="Task-list"><a href="#Task-list" class="headerlink" title="Task list"></a>Task list</h2><ul><li><input checked="" disabled="" type="checkbox"> <del>代码高亮：有点问题，暂且蒙古里（虽然我并一定会写很多代码</del> <a href="https://nantekoto.github.io/2022/11/30/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-2/">↓解决鸟↓</a><ul><li><input checked="" disabled="" type="checkbox"> <del>首行缩进</del></li></ul></li><li><input checked="" disabled="" type="checkbox"> <del>social模块：</del><ul><li><input checked="" disabled="" type="checkbox"> <del>这个主题我唯一想换掉的就是左下角github的图标，太憨憨了（文档提供了方法</del></li><li><input checked="" disabled="" type="checkbox"> <del>一些额外的个人链接想要加上，要摸索下</del></li></ul></li><li><input checked="" disabled="" type="checkbox"> <del>建站时间</del> <a href="https://nantekoto.github.io/2022/12/01/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-3/">↓解决鸟↓</a></li><li><input checked="" disabled="" type="checkbox"> <del>网站索引：要去google和baidu上登记一下（争取一点微弱的曝光量</del></li><li><input checked="" disabled="" type="checkbox"> <del>访问统计：用了不蒜子。</del><a href="https://nantekoto.github.io/2022/12/08/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-4/">↓解决鸟↓</a></li><li><input checked="" disabled="" type="checkbox"> <del>评论插件：感觉都不好用，可能不会装（装了waline）</del></li><li><input disabled="" type="checkbox"> 本地搜索：可能会加？也可能懒得弄了</li><li><input disabled="" type="checkbox"> 关于博主：可能这个模块才是比较重要的吧，有点懒，想写成CV的样子又觉得该随意点</li><li><input disabled="" type="checkbox"> 个人域名：又要花钱，花钱的事最后再说</li><li><input disabled="" type="checkbox"> Latex支持：latex公式写着很有意思，虽然我肯定不会在博客写，但说不定会装上</li></ul><p>又要忙报告，之后再说啦，<em>じゃあ~</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 碎碎念 </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>はじまるよ~博客搭建日志 3</title>
+      <link href="/2022/12/01/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-3/"/>
+      <url>/2022/12/01/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-3/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天轮到我平泽忧扇<a href="https://www.bilibili.com/bangumi/play/ep21265">巴掌</a>啦</p><span id="more"></span><!-- 简单示例 (id, server, type)  -->    <div id="aplayer-tUNSrZLJ" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="2420303" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div><h2 id="代码首行缩进"><a href="#代码首行缩进" class="headerlink" title="代码首行缩进"></a>代码首行缩进</h2><p>昨天提到过这个问题</p><blockquote><p>但是又发现主题的代码框第一行存在一个空格的缩进，应该是个bug吧，提了issue希望能被修复。<br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/1669792376204.jpg" alt="bug" data-caption="bug" loading="lazy"></p></blockquote><p>已经被人提过<a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe/pull/246">pr解决了</a>，但是还没merge到release版本里，暂且手动修改下。</p><h2 id="建站时间"><a href="#建站时间" class="headerlink" title="建站时间"></a>建站时间</h2><p><a href="https://godweiyang.com/2018/04/13/hexo-blog/">这篇博文</a>有很多有用的东西，东拼西凑在网站左下角加了一条建站时间，只显示天数，不那么聒噪。</p><p>直接在包里面的<code>\layout\_partial\header.ejs</code>修改，在<code>&lt;div class=&quot;nexmoe-copyright&quot;&gt;</code>下直接加一句调用。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nexmoe-copyright&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 新增建站时间 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sitetime&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">br</span>&gt;</span><br></code></pre></td></tr></table></figure><p>函数放在代码最后面就行</p><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">&lt;script language=javascript&gt;<br>    <span class="hljs-keyword">function</span> site<span class="hljs-constructor">Time()</span> &#123;<br>        window.set<span class="hljs-constructor">Timeout(<span class="hljs-string">&quot;siteTime()&quot;</span>, 1000)</span>;<br>        var days = <span class="hljs-number">1000</span><span class="hljs-operator"> * </span><span class="hljs-number">60</span><span class="hljs-operator"> * </span><span class="hljs-number">60</span><span class="hljs-operator"> * </span><span class="hljs-number">24</span>;<br>        var today = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Date()</span>;<br>        var todayYear = today.get<span class="hljs-constructor">FullYear()</span>;<br>        var todayMonth = today.get<span class="hljs-constructor">Month()</span> + <span class="hljs-number">1</span>;<br>        var todayDate = today.get<span class="hljs-constructor">Date()</span>;<br>        var todayHour = today.get<span class="hljs-constructor">Hours()</span>;<br>        var todayMinute = today.get<span class="hljs-constructor">Minutes()</span>;<br>        var todaySecond = today.get<span class="hljs-constructor">Seconds()</span>;<br>        var t1 = Date.<span class="hljs-constructor">UTC(2022, 11, 26, 13, 25, 22)</span>; <span class="hljs-comment">//对应北京时间2022-11-26 21:25:22</span><br>        var t2 = Date.<span class="hljs-constructor">UTC(<span class="hljs-params">todayYear</span>, <span class="hljs-params">todayMonth</span>, <span class="hljs-params">todayDate</span>, <span class="hljs-params">todayHour</span>, <span class="hljs-params">todayMinute</span>, <span class="hljs-params">todaySecond</span>)</span>;<br>        var diff = t2 - t1;<br>        var diffDays = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>floor(diff<span class="hljs-operator"> / </span>days);<br>        document.get<span class="hljs-constructor">ElementById(<span class="hljs-string">&quot;sitetime&quot;</span>)</span>.innerHTML = diffDays + <span class="hljs-string">&quot; days traveling&quot;</span>;<br>    &#125;<br>    site<span class="hljs-constructor">Time()</span>;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure><h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><p>想找一个不用登录就能用的，只有valine，但是样式实在是太丑了。基于github的又只能github登录，矮子里面拔将军选了disqus。<br>主题的文档里评论接口还是<code>comment</code>，最新版本已经改成<code>slotComment</code>了，一样配置貌似就不能用了？暂且继续蒙古里。</p><h2 id="访问统计"><a href="#访问统计" class="headerlink" title="访问统计"></a>访问统计</h2><p>这个接口也一样，貌似在新版本里被废弃了，所以尝试在<code>\layout\layout.ejs</code>的<code>&lt;head&gt;</code>后面直接添加google跟踪代码，测试有效。</p><p>并且通过google analytics认证的网站会同时被google索引，不用再添加认证。</p><p>百度只添加了索引的代码，同样的位置，也成功被索引。</p><h2 id="Task-list"><a href="#Task-list" class="headerlink" title="Task list"></a>Task list</h2><ul><li><input checked="" disabled="" type="checkbox"> <del>代码高亮：有点问题，暂且蒙古里（虽然我并一定会写很多代码</del><ul><li><input checked="" disabled="" type="checkbox"> <del>首行缩进</del></li></ul></li><li><input checked="" disabled="" type="checkbox"> <del>social模块：</del><ul><li><input checked="" disabled="" type="checkbox"> <del>这个主题我唯一想换掉的就是左下角github的图标，太憨憨了（文档提供了方法</del></li><li><input checked="" disabled="" type="checkbox"> <del>一些额外的个人链接想要加上，要摸索下</del></li></ul></li><li><input checked="" disabled="" type="checkbox"> <del>建站时间</del></li><li><input checked="" disabled="" type="checkbox"> <del>网站索引：要去google和baidu上登记一下（争取一点微弱的曝光量</del></li><li><input checked="" disabled="" type="checkbox"> <del>访问统计：在加了在加了，虽然只有自己刷刷数据（悲）。</del></li><li><input disabled="" type="checkbox"> 本地搜索：可能会加？也可能懒得弄了</li><li><input disabled="" type="checkbox"> 关于博主：可能这个模块才是比较重要的吧，有点懒，想写成CV的样子又觉得该随意点</li><li><input disabled="" type="checkbox"> 个人域名：又要花钱，花钱的事最后再说</li><li><input disabled="" type="checkbox"> Latex支持：latex公式写着很有意思，虽然我肯定不会在博客写，但说不定会装上</li><li><input disabled="" type="checkbox"> 评论插件：感觉都不好用，可能不会装</li></ul><p>最近要忙论文了，之后再说啦，<em>じゃあね~</em></p><div align="center">    <img src="https://tskun.com/wp-content/uploads/2018/07/byebye_girl.png"    alt="挥挥"></img></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 碎碎念 </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>はじまるよ~博客搭建日志 2</title>
+      <link href="/2022/11/30/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-2/"/>
+      <url>/2022/11/30/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-2/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天我平泽唯就要再给你<a href="https://www.bilibili.com/bangumi/play/ep21265">一砣儿</a></p><span id="more"></span><!-- 简单示例 (id, server, type)  -->    <div id="aplayer-EDbbSwTo" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="2420303" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>似乎在默认配置文件里关闭prismjs就好了？</p><p>但是又发现主题的代码框第一行存在一个空格的缩进，应该是个bug吧，提了issue希望能被修复。<br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/1669792376204.jpg" alt="bug" data-caption="bug" loading="lazy"></p><h2 id="social模块"><a href="#social模块" class="headerlink" title="social模块"></a>social模块</h2><p><del>虽然不太清楚原理，但是瞎搞弄成了</del></p><p>主题作者有写自己弄图标替换的<a href="https://docs.nexmoe.com/v3.2/config/icon.html">教程</a>，但是不是太详细：</p><ul><li>使用阿里的图标库:登陆阿里矢量库注册 <strong>(<a href="https://www.iconfont.cn/">iconfont</a>网站)</strong></li><li>图标管理</li><li>新建项目</li><li>编辑项目页面 Font Family 参数修改为nexmoefont <strong>(似乎是继承的意思，不懂咕噜)</strong></li><li>添加新图标到项目 <strong>(只需要添加想要的图标就行了，google一个svg或者自己画)</strong></li><li>生成的 css 地址添加到主题配置文件 iconlib 参数的 value 部分 <strong>(默认是空，就自己加个)</strong></li><li>在使用图标部分引用在矢量库的 class <strong>（很有问题，是修改引用的类吗？不太懂，反正我是直接改的引用的名字）</strong></li></ul><p>反正只需要添加想要改的或者想加的新图标进自己的项目就够了，应该是继承了nexmoefont就能两个图标库共存。</p><p>然后在引用里改成自己上传图标的名字，<strong>注意，引用的是 icon- 再接上图标名字</strong></p><p>图标为<code>github-replace</code><br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/1669794013757.jpg" alt="图标" data-caption="图标" loading="lazy"></p><p>引用<code>icon-github-replace</code><br><img onerror="imgOnError(this);" data-fancybox="gallery" src="/%E6%9D%82%E5%9B%BE/1669793852939.jpg" alt="引用" data-caption="引用" loading="lazy"></p><p>bangumi的图标暂时没找到svg，再说。最后注意<strong>每次更新图标库，css地址都要发生变化，需要重新配置</strong></p><h2 id="Task-list"><a href="#Task-list" class="headerlink" title="Task list"></a>Task list</h2><ul><li><input checked="" disabled="" type="checkbox"> <del>代码高亮：有点问题，暂且蒙古里（虽然我并一定会写很多代码</del></li><li><input checked="" disabled="" type="checkbox"> <del>social模块：</del><ul><li><input checked="" disabled="" type="checkbox"> <del>这个主题我唯一想换掉的就是左下角github的图标，太憨憨了（文档提供了方法</del></li><li><input checked="" disabled="" type="checkbox"> <del>一些额外的个人链接想要加上，要摸索下</del></li></ul></li><li><input disabled="" type="checkbox"> 访问统计：在加了在加了，虽然只有自己刷刷数据（悲）。</li><li><input disabled="" type="checkbox"> 本地搜索：可能会加？也可能懒得弄了</li><li><input disabled="" type="checkbox"> 网站索引：要去google和baidu上登记一下（争取一点微弱的曝光量</li><li><input disabled="" type="checkbox"> 关于博主：可能这个模块才是比较重要的吧，有点懒，想写成CV的样子又觉得该随意点</li><li><input disabled="" type="checkbox"> 个人域名：又要花钱，花钱的事最后再说</li><li><input disabled="" type="checkbox"> Latex支持：latex公式写着很有意思，虽然我肯定不会在博客写，但说不定会装上</li><li><input disabled="" type="checkbox"> 评论插件：感觉都不好用，可能不会装</li></ul><p>正在调试评论插件，之后再说啦~<em>じゃあ～またね</em></p><div align="center">    <img src="https://syuwafriends.com/wp-content/uploads/2020/02/1df58ad3593d684b88320b04b7059fc6.png"    alt="挥挥"></img></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 碎碎念 </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>はじまるよ~博客搭建日志 1</title>
+      <link href="/2022/11/26/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88/"/>
+      <url>/2022/11/26/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天我平泽唯就要给你<a href="https://www.bilibili.com/bangumi/play/ep21265">一砣儿</a></p><span id="more"></span><!-- 简单示例 (id, server, type)  -->    <div id="aplayer-tuZwQOmS" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="2420303" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div><h2 id="はじまるよ"><a href="#はじまるよ" class="headerlink" title="はじまるよ~"></a>はじまるよ~</h2><p>前两天跟<a href="https://www.yansera.com/">Yansera</a>聊天的时候他突然问有没有主页要互链。</p><p>嗯做cs的确实都有点闲得慌，没有个人主页都要处于鄙视链最下端了。老早之前确实考虑过建一个，但一直没有什么动力，移动互联网时代真的会有人访问个人网站吗（悲）。</p><p>我也闲得慌，没什么目的，搭了这么个博客。</p><h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p>博客框架是<a href="https://hexo.io/">hexo</a>，也是很久以前就听说过，但是一直没有尝试。真用起来确实是很容易上手的，就是官方文档写得很烂。</p><p>博客是部署在github的<a href="https://github.com/nantekoto/nantekoto.github.io">个人仓库</a>里面，这次为了方便操作又把Git装上了，遥想当年注册github的时候就装过，但一想到又不是专门做开发的哪有那么多代码要管理，不禁悲从中来，隔日就把Git卸载掉了。</p><p>主题是<a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe">nexmoe</a>，简洁漂亮，很适合我们这种二次元。开发者还专门写了使用文档，上手很快没怎么卡壳（感恩。</p><p>不过作为纯外行要熟悉js和html也还是花不少时间，代码只能连蒙带猜，项目结构不甚清楚，说不定之后还需要系统学习下，现在就暂且用着吧。</p><p>虽然已经可以开始po文了，但还是有一些细枝末节的问题比较纠结，留待后续解决。</p><h2 id="Task-list"><a href="#Task-list" class="headerlink" title="Task list"></a>Task list</h2><ul><li><input disabled="" type="checkbox"> 代码高亮：有点问题，暂且蒙古里（虽然我并一定会写很多代码</li><li><input disabled="" type="checkbox"> social模块：<ul><li><input disabled="" type="checkbox"> 这个主题我唯一想换掉的就是左下角github的图标，太憨憨了（文档提供了方法</li><li><input disabled="" type="checkbox"> 一些额外的个人链接想要加上，要摸索下</li></ul></li><li><input disabled="" type="checkbox"> 访问统计：在加了在加了，虽然只有自己刷刷数据（悲）。</li><li><input disabled="" type="checkbox"> 本地搜索：可能会加？也可能懒得弄了</li><li><input disabled="" type="checkbox"> 网站索引：要去google和baidu上登记一下（争取一点微弱的曝光量</li><li><input disabled="" type="checkbox"> 关于博主：可能这个模块才是比较重要的吧，有点懒，想写成CV的样子又觉得该随意点</li><li><input disabled="" type="checkbox"> 个人域名：又要花钱，花钱的事最后再说</li><li><input disabled="" type="checkbox"> Latex支持：latex公式写着很有意思，虽然我肯定不会在博客写，但说不定会装上</li><li><input disabled="" type="checkbox"> 评论插件：感觉都不好用，可能不会装</li></ul><p>暂且就这样，还需要再多花时间，之后再说啦~<em>またね</em></p><div align="center">    <img src="https://syuwafriends.com/wp-content/uploads/2020/02/1df58ad3593d684b88320b04b7059fc6.png"    alt="挥挥"></img></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 碎碎念 </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
