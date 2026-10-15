@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>はじまるよ~博客搭建日志 5</title>
+      <link href="/2026/10/15/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-5/"/>
+      <url>/2026/10/15/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-5/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>梓喵还没醒，博客已经快放了四年了（悲）。</p><span id="more"></span>    <div id="aplayer-IDpmYfmN" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="2420303" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div><p>翻回上一篇搭建日志，结尾写的是「又要忙报告，之后再说啦」。</p><p>嗯，这个「之后」稍微有点久。</p><p>期间也不是完全没写东西，但博客本身基本处于能打开就先用着的状态。这次干脆让 Codex 接手检查了一遍，把框架、依赖和当年连蒙带猜改进去的东西整理一下。页面看起来没什么大变化，底下倒是翻出不少旧账。</p><h2 id="主题到底放在哪里"><a href="#主题到底放在哪里" class="headerlink" title="主题到底放在哪里"></a>主题到底放在哪里</h2><p>以前装 Nexmoe 的时候，是直接在 <code>node_modules/hexo-theme-nexmoe</code> 里面改文件的。访问统计、Waline，还有几个页面的布局，都往包里塞。</p><p>当年觉得很方便，找到文件，改，能显示，大功告成。</p><p>现在再看，<strong>重新安装依赖就可能把这些修改全冲掉</strong>。也就是说，我一直把装修好的房间寄存在快递纸箱里，还觉得收拾得挺整齐。</p><p>所以这次先把原来的主题完整复制出来，放到：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">themes/nexmoe/<br></code></pre></td></tr></table></figure><p>站点配置仍然是：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">theme:</span> <span class="hljs-string">nexmoe</span><br></code></pre></td></tr></table></figure><p>只是以后要改模板，就去这个目录里改。原来的评论、统计和页面布局都保留，npm 里面的 Nexmoe 依赖则移除了。</p><p>这次没有顺便追主题的新版本。先把自己当年改过什么保住，不然升级完发现评论没了，又要对着四年前的日志重新蒙古里。</p><h2 id="框架和依赖"><a href="#框架和依赖" class="headerlink" title="框架和依赖"></a>框架和依赖</h2><p>Hexo 从 <code>6.3.0</code> 升到了 <code>7.3.0</code>，Markdown 渲染器从 <code>6.0.0</code> 升到 <code>6.3.0</code>，Stylus 渲染器从 <code>2.1.0</code> 升到 <code>3.0.1</code>。</p><p>本来还可以继续往 Hexo 8 走，但电脑上的 Node 还是 <code>18.12.1</code>，够不着新版的要求。暂且先停在能验证通过的版本，之后再处理运行环境。</p><p>顺便跑了一下 <code>npm audit</code>，第一次报了 <strong>39 项依赖问题，其中 2 项 critical</strong>。</p><p><del>能正常生成网页就说明一切正常</del></p><p>做完兼容的修复以后，降到了 <strong>17 项，8 项 high、9 项 moderate，critical 清零</strong>。剩下的有一些挂在 Hexo 的工具依赖上，还有一些是音乐插件带进来的老包，暂时没有合适的修复版本。</p><p>音乐先留着。毕竟这几篇日志连正文还没开始就要放轻音，直接把播放器卸了，总感觉少了点什么。</p><p>这里还有个小坑：**不要看见提示就直接 <code>npm audit fix --force</code>**。这次审计给出的某条修复路线，居然是把 Hexo 降回 <code>3.9.0</code>。修完问题，顺便穿越回去，倒也不必。</p><h2 id="一些细枝末节"><a href="#一些细枝末节" class="headerlink" title="一些细枝末节"></a>一些细枝末节</h2><p>站点的 <code>url</code> 之前还是 HTTP，现在改成 HTTPS。时区也明确设为 <code>Asia/Hong_Kong</code>，以后换一台电脑生成，日期不至于跟着系统设置到处跑。</p><p>默认文章布局原来写的是 <code>my_post</code>，但 <code>scaffolds</code> 里根本没有对应的模板，只有 <code>post.md</code>。这次也改成 <code>post</code>，总算和实际文件对上了。</p><p>主题配置还引用了一个不存在的 <code>custom.css</code>。文件都没有，每次打开页面却还要去找它，属于很执着了。先把这条引用去掉，真要写自定义样式的时候再加。顺便修了模板里读取样式文件名的地方，以后配什么名字就加载什么名字。</p><p>然后是 Google Analytics。</p><p>当年在日志里写，把跟踪代码丢进 <code>&lt;head&gt;</code> 就好了。结果这次一看，页面里有两份加载代码和初始化。</p><p>具体什么时候又粘了一遍，已经不记得了。反正现在只留一份，省得每次访问都热情地招呼两遍统计脚本。</p><h2 id="能生成，还得检查一下"><a href="#能生成，还得检查一下" class="headerlink" title="能生成，还得检查一下"></a>能生成，还得检查一下</h2><p>以前的流程大概是：改代码，生成，打开首页看看，感觉没炸，发。</p><p>这次多加了一个检查命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run build<br>npm run check<br></code></pre></td></tr></table></figure><p>前一个负责生成网页，后一个检查生成页面里的本地链接和资源是否存在，也会检查站内 HTTP 地址和重复的 Analytics 加载代码。更新后的站点生成了 264 个文件，当时的 29 个页面全部通过。</p><p>当然，这不代表评论服务、外链和播放器都被自动测了一遍。脚本主要负责找本地文件和页面里的几类问题，不能替我把整个网站玩一遍。</p><p>还有一个没解决的坑：<code>npm run clean</code> 清理 <code>public/css</code> 的时候会报 <code>EPERM</code>。项目放在 OneDrive 里，目前还没确认究竟是哪一层的权限或者文件状态出了问题。重新生成倒是能成功，但之后如果删除文章或者资源，就不能想当然地以为旧文件也一定清干净了。</p><p>先记在这里，免得下次又从头查。</p><h2 id="发出去"><a href="#发出去" class="headerlink" title="发出去"></a>发出去</h2><p>这一轮维护已经推到了 GitHub Pages，部署也成功了。检查线上首页，重复的统计代码和不存在的样式引用都已经消失。</p><p>这次发布沿用了原来的提交历史，没有强推覆盖。顺便还补了 README 和维护记录，至少下次回来，不用先花半天猜这堆文件都是干什么的。</p><p>不过还有一件容易混淆的事：<code>.deploy_git</code> 管的是生成以后拿去发布的网页，<strong>源码目录本身还没有建立 Git 仓库</strong>。文章、配置和主题的版本管理，之后也得补上。不能以为网页在 GitHub 上，所有东西就都自动有备份了。</p><h2 id="Task-list"><a href="#Task-list" class="headerlink" title="Task list"></a>Task list</h2><ul><li><input checked="" disabled="" type="checkbox"> 把改过的主题从 <code>node_modules</code> 里搬出来</li><li><input checked="" disabled="" type="checkbox"> 更新 Hexo、渲染器和能兼容修复的依赖</li><li><input checked="" disabled="" type="checkbox"> 修一下 HTTPS、时区和默认文章模板</li><li><input checked="" disabled="" type="checkbox"> 去掉重复统计代码和不存在的样式引用</li><li><input checked="" disabled="" type="checkbox"> 加上生成后的检查，重新部署</li><li><input disabled="" type="checkbox"> 更新 Node，再看看 Hexo 8</li><li><input disabled="" type="checkbox"> 剩下的依赖问题，尤其是音乐插件那串老包</li><li><input disabled="" type="checkbox"> 搞清楚 <code>clean</code> 为什么删不掉目录</li><li><input disabled="" type="checkbox"> 给源码也建一个 Git 仓库</li><li><input disabled="" type="checkbox"> 本地搜索、关于博主、个人域名……嗯，还是那些老朋友</li></ul><p>写到这里发现，维护博客最有效的办法可能还是多写点东西。否则每次回来，第一篇都是「先修一下博客」。</p><p>暂且修到这里，希望下一篇不用再等四年。<em>じゃあ~</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 碎碎念 </tag>
+            
+            <tag> 前端 </tag>
+            
+            <tag> 博客搭建 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Gemini CLI 踩雷</title>
       <link href="/2026/01/01/gemini-cli-configuration/"/>
       <url>/2026/01/01/gemini-cli-configuration/</url>

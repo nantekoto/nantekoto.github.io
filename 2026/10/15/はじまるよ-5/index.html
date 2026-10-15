@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<!-- Baidu tag -->
+	<meta name="baidu-site-verification" content="code-i75JGnYPmn" />
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9WN5ZCSYH5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-9WN5ZCSYH5');
+	</script>
+
+    
+    <title>はじまるよ~博客搭建日志 5 - にゃんぱすー</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="/images/background/cangshu.png" type="image/png" />
+    <meta name="description" content="梓喵还没醒，博客已经快放了四年了（悲）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="はじまるよ~博客搭建日志 5">
+<meta property="og:url" content="https://nantekoto.github.io/2026/10/15/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-5/index.html">
+<meta property="og:site_name" content="にゃんぱすー">
+<meta property="og:description" content="梓喵还没醒，博客已经快放了四年了（悲）。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-15T03:14:40.000Z">
+<meta property="article:modified_time" content="2026-10-15T03:15:33.645Z">
+<meta property="article:author" content="TANG Sijie, Jesse">
+<meta property="article:tag" content="碎碎念">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="博客搭建">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1792034142009">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3800417_2yspzelnviu.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1792034142009">
+
+    
+        
+    
+	
+	  <!-- waline样式 -->
+	<link
+		rel="stylesheet"
+		href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+	/>
+	<!-- waline样式 -->
+	
+	
+<meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(/images/background/k-on.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="TANG Sijie, Jesse" class="mdui-btn mdui-btn-icon"><img src="/images/bochirock/ryou.png" alt="TANG Sijie, Jesse"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="TANG Sijie, Jesse">
+            <img src="/images/bochirock/ryou.png" alt="TANG Sijie, Jesse" alt="TANG Sijie, Jesse">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>8</div>
+        <div><span>Tags</span>8</div>
+        <div><span>Categories</span>3</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/friends.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博主">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博主
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://www.google.com/search?q=site:nantekoto.github.io" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+            </form>
+         
+    </div>
+</div>
+
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/3341203"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://bgm.tv/user/glasvegas"
+			target="_blank"
+			mdui-tooltip="{content: 'Bangumi'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-Niconico_Television"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://weibo.com/u/7261866714"
+			target="_blank"
+			mdui-tooltip="{content: '微博'}"
+			style="
+				color: rgb(223, 32, 41);
+				background-color: rgba(223, 32, 41, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-weibo"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/nantekoto/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github-replace"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://www.zhihu.com/people/jesse-towne"
+			target="_blank"
+			mdui-tooltip="{content: '知乎'}"
+			style="
+				color: rgb(30, 136, 229);
+				background-color: rgba(30, 136, 229, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-zhihu"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://twitter.com/jessetowne96"
+			target="_blank"
+			mdui-tooltip="{content: 'Twitter'}"
+			style="
+				color: rgb(59, 151, 239);
+				background-color: rgba(59, 151, 239, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-twitter"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://t.me/jessetang"
+			target="_blank"
+			mdui-tooltip="{content: 'Telegram'}"
+			style="
+				color: rgb(42, 171, 238);
+				background-color: rgba(42, 171, 238, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-telegram"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="mailto:tsj9696@foxmail.com"
+			target="_blank"
+			mdui-tooltip="{content: 'Mail'}"
+			style="
+				color: rgb(160, 160, 160);
+				background-color: rgba(160, 160, 160, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-mail-fill"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客搭建/">博客搭建</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/回忆/">回忆</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/笔记/">笔记</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Gemini/" style="font-size: 10px;">Gemini</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 10px;">博客搭建</a> <a href="/tags/%E7%8C%AB/" style="font-size: 10px;">猫</a> <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" style="font-size: 20px;">碎碎念</a> <a href="/tags/%E8%AF%B4%E6%98%8E/" style="font-size: 10px;">说明</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(8);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="a">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Recent Posts</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/15/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-5/">はじまるよ~博客搭建日志 5</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/01/gemini-cli-configuration/">Gemini CLI 踩雷</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/13/ChatGPT%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97/">ChatGPT食用指南</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/23/%E6%B5%81%E6%B5%AA%E7%9A%84%E7%8C%AB%E5%8E%BB%E4%B8%96%E4%BA%86/">流浪的猫去世了</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/08/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-4/">はじまるよ~博客搭建日志 4</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+
+    <div class="nexmoe-copyright">
+	
+		<span id="busuanzi_container_site_pv"> </br> 
+			<span id="busuanzi_value_site_pv"></span> views  
+		</span>
+		
+		<span id="busuanzi_container_site_uv">
+			<span id="busuanzi_value_site_uv"></span> visitors </br> 
+		</span>
+	
+		<!-- 新增建站时间 -->
+		<span id="sitetime"></span></br> </br> 
+	
+        &copy; 2026 TANG Sijie, Jesse
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+		
+        
+    </div>
+	
+	
+
+</div><!-- .nexmoe-drawer -->
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var days = 1000 * 60 * 60 * 24;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2022, 11, 26, 21, 25, 22); //北京时间2022-11-26 21:25:22
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffDays = Math.floor(diff / days);
+
+        document.getElementById("sitetime").innerHTML = diffDays + " days traveling";
+    }
+    siteTime();
+</script>
+
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 40%;"> 
+            <img src="/images/k-on/10w.jpg" alt="はじまるよ~博客搭建日志 5" loading="lazy">
+            <h1>はじまるよ~博客搭建日志 5</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2026年10月15日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约1.6k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <p>梓喵还没醒，博客已经快放了四年了（悲）。</p>
+<span id="more"></span>
+
+
+    <div id="aplayer-IDpmYfmN" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="2420303" data-server="netease" data-type="album" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
+    ></div>
+
+<p>翻回上一篇搭建日志，结尾写的是「又要忙报告，之后再说啦」。</p>
+<p>嗯，这个「之后」稍微有点久。</p>
+<p>期间也不是完全没写东西，但博客本身基本处于能打开就先用着的状态。这次干脆让 Codex 接手检查了一遍，把框架、依赖和当年连蒙带猜改进去的东西整理一下。页面看起来没什么大变化，底下倒是翻出不少旧账。</p>
+<h2 id="主题到底放在哪里"><a href="#主题到底放在哪里" class="headerlink" title="主题到底放在哪里"></a>主题到底放在哪里</h2><p>以前装 Nexmoe 的时候，是直接在 <code>node_modules/hexo-theme-nexmoe</code> 里面改文件的。访问统计、Waline，还有几个页面的布局，都往包里塞。</p>
+<p>当年觉得很方便，找到文件，改，能显示，大功告成。</p>
+<p>现在再看，<strong>重新安装依赖就可能把这些修改全冲掉</strong>。也就是说，我一直把装修好的房间寄存在快递纸箱里，还觉得收拾得挺整齐。</p>
+<p>所以这次先把原来的主题完整复制出来，放到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">themes/nexmoe/<br></code></pre></td></tr></table></figure>
+
+<p>站点配置仍然是：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">theme:</span> <span class="hljs-string">nexmoe</span><br></code></pre></td></tr></table></figure>
+
+<p>只是以后要改模板，就去这个目录里改。原来的评论、统计和页面布局都保留，npm 里面的 Nexmoe 依赖则移除了。</p>
+<p>这次没有顺便追主题的新版本。先把自己当年改过什么保住，不然升级完发现评论没了，又要对着四年前的日志重新蒙古里。</p>
+<h2 id="框架和依赖"><a href="#框架和依赖" class="headerlink" title="框架和依赖"></a>框架和依赖</h2><p>Hexo 从 <code>6.3.0</code> 升到了 <code>7.3.0</code>，Markdown 渲染器从 <code>6.0.0</code> 升到 <code>6.3.0</code>，Stylus 渲染器从 <code>2.1.0</code> 升到 <code>3.0.1</code>。</p>
+<p>本来还可以继续往 Hexo 8 走，但电脑上的 Node 还是 <code>18.12.1</code>，够不着新版的要求。暂且先停在能验证通过的版本，之后再处理运行环境。</p>
+<p>顺便跑了一下 <code>npm audit</code>，第一次报了 <strong>39 项依赖问题，其中 2 项 critical</strong>。</p>
+<p><del>能正常生成网页就说明一切正常</del></p>
+<p>做完兼容的修复以后，降到了 <strong>17 项，8 项 high、9 项 moderate，critical 清零</strong>。剩下的有一些挂在 Hexo 的工具依赖上，还有一些是音乐插件带进来的老包，暂时没有合适的修复版本。</p>
+<p>音乐先留着。毕竟这几篇日志连正文还没开始就要放轻音，直接把播放器卸了，总感觉少了点什么。</p>
+<p>这里还有个小坑：**不要看见提示就直接 <code>npm audit fix --force</code>**。这次审计给出的某条修复路线，居然是把 Hexo 降回 <code>3.9.0</code>。修完问题，顺便穿越回去，倒也不必。</p>
+<h2 id="一些细枝末节"><a href="#一些细枝末节" class="headerlink" title="一些细枝末节"></a>一些细枝末节</h2><p>站点的 <code>url</code> 之前还是 HTTP，现在改成 HTTPS。时区也明确设为 <code>Asia/Hong_Kong</code>，以后换一台电脑生成，日期不至于跟着系统设置到处跑。</p>
+<p>默认文章布局原来写的是 <code>my_post</code>，但 <code>scaffolds</code> 里根本没有对应的模板，只有 <code>post.md</code>。这次也改成 <code>post</code>，总算和实际文件对上了。</p>
+<p>主题配置还引用了一个不存在的 <code>custom.css</code>。文件都没有，每次打开页面却还要去找它，属于很执着了。先把这条引用去掉，真要写自定义样式的时候再加。顺便修了模板里读取样式文件名的地方，以后配什么名字就加载什么名字。</p>
+<p>然后是 Google Analytics。</p>
+<p>当年在日志里写，把跟踪代码丢进 <code>&lt;head&gt;</code> 就好了。结果这次一看，页面里有两份加载代码和初始化。</p>
+<p>具体什么时候又粘了一遍，已经不记得了。反正现在只留一份，省得每次访问都热情地招呼两遍统计脚本。</p>
+<h2 id="能生成，还得检查一下"><a href="#能生成，还得检查一下" class="headerlink" title="能生成，还得检查一下"></a>能生成，还得检查一下</h2><p>以前的流程大概是：改代码，生成，打开首页看看，感觉没炸，发。</p>
+<p>这次多加了一个检查命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run build<br>npm run check<br></code></pre></td></tr></table></figure>
+
+<p>前一个负责生成网页，后一个检查生成页面里的本地链接和资源是否存在，也会检查站内 HTTP 地址和重复的 Analytics 加载代码。更新后的站点生成了 264 个文件，当时的 29 个页面全部通过。</p>
+<p>当然，这不代表评论服务、外链和播放器都被自动测了一遍。脚本主要负责找本地文件和页面里的几类问题，不能替我把整个网站玩一遍。</p>
+<p>还有一个没解决的坑：<code>npm run clean</code> 清理 <code>public/css</code> 的时候会报 <code>EPERM</code>。项目放在 OneDrive 里，目前还没确认究竟是哪一层的权限或者文件状态出了问题。重新生成倒是能成功，但之后如果删除文章或者资源，就不能想当然地以为旧文件也一定清干净了。</p>
+<p>先记在这里，免得下次又从头查。</p>
+<h2 id="发出去"><a href="#发出去" class="headerlink" title="发出去"></a>发出去</h2><p>这一轮维护已经推到了 GitHub Pages，部署也成功了。检查线上首页，重复的统计代码和不存在的样式引用都已经消失。</p>
+<p>这次发布沿用了原来的提交历史，没有强推覆盖。顺便还补了 README 和维护记录，至少下次回来，不用先花半天猜这堆文件都是干什么的。</p>
+<p>不过还有一件容易混淆的事：<code>.deploy_git</code> 管的是生成以后拿去发布的网页，<strong>源码目录本身还没有建立 Git 仓库</strong>。文章、配置和主题的版本管理，之后也得补上。不能以为网页在 GitHub 上，所有东西就都自动有备份了。</p>
+<h2 id="Task-list"><a href="#Task-list" class="headerlink" title="Task list"></a>Task list</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 把改过的主题从 <code>node_modules</code> 里搬出来</li>
+<li><input checked="" disabled="" type="checkbox"> 更新 Hexo、渲染器和能兼容修复的依赖</li>
+<li><input checked="" disabled="" type="checkbox"> 修一下 HTTPS、时区和默认文章模板</li>
+<li><input checked="" disabled="" type="checkbox"> 去掉重复统计代码和不存在的样式引用</li>
+<li><input checked="" disabled="" type="checkbox"> 加上生成后的检查，重新部署</li>
+<li><input disabled="" type="checkbox"> 更新 Node，再看看 Hexo 8</li>
+<li><input disabled="" type="checkbox"> 剩下的依赖问题，尤其是音乐插件那串老包</li>
+<li><input disabled="" type="checkbox"> 搞清楚 <code>clean</code> 为什么删不掉目录</li>
+<li><input disabled="" type="checkbox"> 给源码也建一个 Git 仓库</li>
+<li><input disabled="" type="checkbox"> 本地搜索、关于博主、个人域名……嗯，还是那些老朋友</li>
+</ul>
+<p>写到这里发现，维护博客最有效的办法可能还是多写点东西。否则每次回来，第一篇都是「先修一下博客」。</p>
+<p>暂且修到这里，希望下一篇不用再等四年。<em>じゃあ~</em></p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>Author：</strong>TANG Sijie, Jesse<br>
+        <strong>Link：</strong><a href="https://nantekoto.github.io/2026/10/15/%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-5/" title="https:&#x2F;&#x2F;nantekoto.github.io&#x2F;2026&#x2F;10&#x2F;15&#x2F;%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-5&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;nantekoto.github.io&#x2F;2026&#x2F;10&#x2F;15&#x2F;%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8B%E3%82%88-5&#x2F;</a><br>
+        
+            <strong>Copyright: </strong><a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a>
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="tag">博客搭建</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" rel="tag">碎碎念</a>
+    
+</div>
+
+  
+		<div id="waline"></div>
+		<script type="module">
+			import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+			init({
+				el: '#waline',
+				serverURL: 'https://waline-comment-dusky.vercel.app/',
+			});
+		</script> 
+  
+  
+	
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E5%88%B0%E5%BA%95%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-number">1.</span> <span class="toc-text">主题到底放在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E5%92%8C%E4%BE%9D%E8%B5%96"><span class="toc-number">2.</span> <span class="toc-text">框架和依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%BB%86%E6%9E%9D%E6%9C%AB%E8%8A%82"><span class="toc-number">3.</span> <span class="toc-text">一些细枝末节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%BD%E7%94%9F%E6%88%90%EF%BC%8C%E8%BF%98%E5%BE%97%E6%A3%80%E6%9F%A5%E4%B8%80%E4%B8%8B"><span class="toc-number">4.</span> <span class="toc-text">能生成，还得检查一下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%87%BA%E5%8E%BB"><span class="toc-number">5.</span> <span class="toc-text">发出去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Task-list"><span class="toc-number">6.</span> <span class="toc-text">Task list</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="Search"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1792034142015"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>
